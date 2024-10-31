@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaMvvmApp2.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="using:AvaloniaMvvmApp2"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="1000"
+        x:Class="AvaloniaMvvmApp2.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaMvvmApp2">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="2*"/>
+      <RowDefinition Height="2*"/>
+    </Grid.RowDefinitions>
+    <Grid>
+      <TextBlock Text="选择串口号：" Margin="10,10,0,10"/>
+      <ComboBox ItemsSource="{Binding AvailablePorts}" SelectedItem="{Binding SelectedPort}" Width="200" Margin="10,40,0,20"/>
+      <Button Content="连接串口" Command="{Binding ConnectToPortCommand}" Width="150" Margin="10 80 0 0" VerticalAlignment="Top"/>
+      <Button Content="随机数"   Command="{Binding StartUpdatingCommand}"  Width="150" Margin="210 80 0 0" VerticalAlignment="Top"/>
+      <Button Content="随机数2"   Command="{Binding StartUpdatingCommand}"  Width="150" Margin="410 80 0 0" VerticalAlignment="Top"/>
+    </Grid>
+     
+    <lvc:CartesianChart Grid.Row="1"
+        Series="{Binding Series2}">
+    </lvc:CartesianChart>
+    <lvc:CartesianChart Grid.Row="2"
+        Series="{Binding Series}">
+    </lvc:CartesianChart>
+  </Grid>
+  
+
+</Window>
